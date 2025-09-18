@@ -1,0 +1,5 @@
+.env
+/assets
+subbasins-pds.geojson
+assets/*.tif
+*.dss
