@@ -5,6 +5,8 @@ from jinja2 import Template
 import os
 import dotenv
 
+dotenv.load_dotenv()
+
 #PATHS
 csv_file = os.getenv("CSV_FILE")
 dss_file = os.getenv("DSS_FILE")
@@ -95,14 +97,14 @@ gage_template = """<?xml version="1.0" encoding="UTF-8"?>
 </Gages>
 """
 
-output_file = os.getenv("OUTPUT_FILE")
-
 if gage_entries:
     template = Template(template_str)
     output = template.render(gages=gage_entries)
 
-    with open(output_file,"w", encoding="utf-8") as f:
+    with open(gage_file,"w", encoding="utf-8") as f:
         f.write(output)
-        print(f"Gage file created: {output_file}")
+        print(f"Gage file created: {gage_file}")
 else:
     print("No entries at the gage file. Check your CSV.")
+
+print(csv_file, dss_file, gage_file)
