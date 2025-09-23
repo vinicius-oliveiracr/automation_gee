@@ -1,185 +1,185 @@
 
-<?xml version="1.0" encoding="UTF-8"?>
+    <?xml version="1.0" encoding="UTF-8"?>
 <Gages>
 <Gage id="Gage-0" name="S_1">
-        <timeSeries file="precipitation.dss" pathname="/1/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/1/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-1" name="S_2">
-        <timeSeries file="precipitation.dss" pathname="/2/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/2/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-2" name="S_3">
-        <timeSeries file="precipitation.dss" pathname="/3/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/3/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-3" name="S_4">
-        <timeSeries file="precipitation.dss" pathname="/4/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/4/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-4" name="S_5">
-        <timeSeries file="precipitation.dss" pathname="/5/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/5/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-5" name="S_6">
-        <timeSeries file="precipitation.dss" pathname="/6/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/6/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-6" name="S_7">
-        <timeSeries file="precipitation.dss" pathname="/7/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/7/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-7" name="S_8">
-        <timeSeries file="precipitation.dss" pathname="/8/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/8/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-8" name="S_9">
-        <timeSeries file="precipitation.dss" pathname="/9/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/9/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-9" name="S_10">
-        <timeSeries file="precipitation.dss" pathname="/10/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/10/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-10" name="S_11">
-        <timeSeries file="precipitation.dss" pathname="/11/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/11/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-11" name="S_12">
-        <timeSeries file="precipitation.dss" pathname="/12/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/12/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-12" name="S_13">
-        <timeSeries file="precipitation.dss" pathname="/13/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/13/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-13" name="S_14">
-        <timeSeries file="precipitation.dss" pathname="/14/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/14/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-14" name="S_15">
-        <timeSeries file="precipitation.dss" pathname="/15/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/15/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-15" name="S_16">
-        <timeSeries file="precipitation.dss" pathname="/16/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/16/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-16" name="S_17">
-        <timeSeries file="precipitation.dss" pathname="/17/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/17/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-17" name="S_18">
-        <timeSeries file="precipitation.dss" pathname="/18/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/18/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-18" name="S_19">
-        <timeSeries file="precipitation.dss" pathname="/19/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/19/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-19" name="S_20">
-        <timeSeries file="precipitation.dss" pathname="/20/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/20/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-20" name="S_21">
-        <timeSeries file="precipitation.dss" pathname="/21/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/21/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-21" name="S_22">
-        <timeSeries file="precipitation.dss" pathname="/22/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/22/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-22" name="S_23">
-        <timeSeries file="precipitation.dss" pathname="/23/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/23/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-23" name="S_24">
-        <timeSeries file="precipitation.dss" pathname="/24/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/24/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-24" name="S_25">
-        <timeSeries file="precipitation.dss" pathname="/25/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/25/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-25" name="S_26">
-        <timeSeries file="precipitation.dss" pathname="/26/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/26/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-26" name="S_27">
-        <timeSeries file="precipitation.dss" pathname="/27/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/27/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-27" name="S_28">
-        <timeSeries file="precipitation.dss" pathname="/28/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/28/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-28" name="S_29">
-        <timeSeries file="precipitation.dss" pathname="/29/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/29/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-29" name="S_30">
-        <timeSeries file="precipitation.dss" pathname="/30/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/30/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-30" name="S_31">
-        <timeSeries file="precipitation.dss" pathname="/31/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/31/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-31" name="S_32">
-        <timeSeries file="precipitation.dss" pathname="/32/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/32/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-32" name="S_33">
-        <timeSeries file="precipitation.dss" pathname="/33/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/33/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-33" name="S_34">
-        <timeSeries file="precipitation.dss" pathname="/34/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/34/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-34" name="S_35">
-        <timeSeries file="precipitation.dss" pathname="/35/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/35/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-35" name="S_36">
-        <timeSeries file="precipitation.dss" pathname="/36/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/36/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-36" name="S_37">
-        <timeSeries file="precipitation.dss" pathname="/37/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/37/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-37" name="S_38">
-        <timeSeries file="precipitation.dss" pathname="/38/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/38/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-38" name="S_39">
-        <timeSeries file="precipitation.dss" pathname="/39/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/39/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-39" name="S_40">
-        <timeSeries file="precipitation.dss" pathname="/40/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/40/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-40" name="S_41">
-        <timeSeries file="precipitation.dss" pathname="/41/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/41/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-41" name="S_42">
-        <timeSeries file="precipitation.dss" pathname="/42/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/42/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-42" name="S_43">
-        <timeSeries file="precipitation.dss" pathname="/43/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/43/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-43" name="S_44">
-        <timeSeries file="precipitation.dss" pathname="/44/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/44/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-44" name="S_45">
-        <timeSeries file="precipitation.dss" pathname="/45/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/45/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-45" name="S_46">
-        <timeSeries file="precipitation.dss" pathname="/46/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/46/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-46" name="S_47">
-        <timeSeries file="precipitation.dss" pathname="/47/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/47/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-47" name="S_48">
-        <timeSeries file="precipitation.dss" pathname="/48/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/48/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-48" name="S_49">
-        <timeSeries file="precipitation.dss" pathname="/49/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/49/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-49" name="S_50">
-        <timeSeries file="precipitation.dss" pathname="/50/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/50/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-50" name="S_51">
-        <timeSeries file="precipitation.dss" pathname="/51/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/51/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-51" name="S_52">
-        <timeSeries file="precipitation.dss" pathname="/52/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/52/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-52" name="S_53">
-        <timeSeries file="precipitation.dss" pathname="/53/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/53/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-53" name="S_54">
-        <timeSeries file="precipitation.dss" pathname="/54/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/54/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-54" name="S_55">
-        <timeSeries file="precipitation.dss" pathname="/55/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/55/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-55" name="S_56">
-        <timeSeries file="precipitation.dss" pathname="/56/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/56/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-56" name="S_57">
-        <timeSeries file="precipitation.dss" pathname="/57/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/57/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-57" name="S_58">
-        <timeSeries file="precipitation.dss" pathname="/58/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/58/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-58" name="S_59">
-        <timeSeries file="precipitation.dss" pathname="/59/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/59/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 <Gage id="Gage-59" name="S_60">
-        <timeSeries file="precipitation.dss" pathname="/60/PRECIP/OBS//1DAY/OBS/"/>
+        <timeSeries file="precipitation.dss" pathname="/60/PRECIP/OBS/01JAN2024/1DAY/OBS/"/>
     </Gage>
 
 </Gages>

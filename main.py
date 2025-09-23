@@ -10,10 +10,6 @@ from rasterstats import zonal_stats
 import ee
 import os
 import json
-import time
-from pydrive2.auth import GoogleAuth
-from pydrive2.drive import GoogleDrive
-from pydsstools.heclib.dss import HecDss
 from google.oauth2 import service_account
 from datetime import datetime, timedelta
 import geemap
@@ -146,8 +142,8 @@ except Exception as e:
 
 #GETTING PRECIPITATION DATA FROM GOOGLE EARTH ENGINE
 
-start_date = datetime(2025,1,1)
-end_date = datetime(2025,8,1)
+start_date = datetime(2024,1,1)
+end_date = datetime(2025,1,1)
 
     
 csv_folder = os.path.join(exit_path, "csv_blocks")
