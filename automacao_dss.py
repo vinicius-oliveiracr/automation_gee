@@ -3,17 +3,18 @@ from pydsstools.heclib.dss import HecDss
 from pydsstools.core import TimeSeriesContainer
 from jinja2 import Template
 import os
+import dotenv
 
 #PATHS
-csv_file = r"saidas/precipitacao_diaria_subbacias_unificado.csv"
-dss_file = r"C:/vinicius/automacao_gee/saidas/precipitation.dss"
-gage_file = r"C:/vinicius/automacao_gee/saidas/gage.gage"
+csv_file = os.getenv("CSV_FILE")
+dss_file = os.getenv("DSS_FILE")
+gage_file = os.getenv("GAGE_FILE")
 
 if os.path.exists(dss_file):
     try:
         os.remove(dss_file)
     except Exception as e:
-        print(f"Não foi possível apagar o arquivo dss. Causa: {e}")
+        print(f"Unable to delete dss file: {e}")
 
 df = pd.read_csv(csv_file, parse_dates=['date'])
 
@@ -23,13 +24,13 @@ with HecDss.Open(dss_file) as dss:
 
     try:
         paths_to_delete = dss.getPathnameList("")
-        print(f"Buscando e deletando caminhos existentes...")
+        print("Searching and deleting existing paths...")
         for path in paths_to_delete:
             if "/PRECIP//" in path.upper():
                 print(f"Deletando {path}")
                 dss.deletePathname(path)
     except Exception as e:
-        print(f"Aviso: Não foi possível deletar caminhos antigos. Causa: {e}")
+        print(f"Unable to delete existing paths: {e}")
 
     gage_entries = []
 
@@ -51,7 +52,7 @@ with HecDss.Open(dss_file) as dss:
 
         try:
             dss.put_ts(tsc)
-            print(f"Dados salvos com sucesso para a sub-bacia {subbasin} com o pathname: {pathname}")
+            print(f"Successfully saving data for the sub-basin {subbasin} with pathname: {pathname}")
 
             gage_entries.append({
                 "id": f"Gage-{i}",
@@ -61,14 +62,14 @@ with HecDss.Open(dss_file) as dss:
             })
 
         except Exception as e:
-            print(f"Erro ao salvar dados para a sub-bacia {subbasin}: {e}")
+            print(f"Error while saving data for sub-basin {subbasin}: {e}")
             continue
 
     if gage_entries:
         last_pathname = gage_entries[-1]["pathname"]
         ts_test = dss.read_ts(last_pathname)
-        print(f"\nLeitura de teste bem-sucedida. Número de valores: {ts_test.numberValues}")
-        print(f"Primeiros 5 valores: {ts_test.values[:5]}")
+        print(f"\nSuccessfully reading test data: {ts_test.numberValues}")
+        print(f"First 5 values: {ts_test.values[:5]}")
 
 dss.close()
 
@@ -94,7 +95,7 @@ gage_template = """<?xml version="1.0" encoding="UTF-8"?>
 </Gages>
 """
 
-output_file = "C:/vinicius/automacao_gee/saidas/gage.gage"
+output_file = os.getenv("OUTPUT_FILE")
 
 if gage_entries:
     template = Template(template_str)
@@ -102,6 +103,6 @@ if gage_entries:
 
     with open(output_file,"w", encoding="utf-8") as f:
         f.write(output)
-        print(f"Arquivo Gage criado: {output_file}")
+        print(f"Gage file created: {output_file}")
 else:
-    print("Nenhuma entrada de gage foi criada. Verifique o CSV.")
+    print("No entries at the gage file. Check your CSV.")
