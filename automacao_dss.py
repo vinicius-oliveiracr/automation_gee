@@ -86,7 +86,6 @@ template_str = """
 </Gages>
 """
 
-# ---------------- CRIAÇÃO DO ARQUIVO GAGE ----------------
 gage_template = """<?xml version="1.0" encoding="UTF-8"?>
 <Gages>
 {% for g in gages -%}
