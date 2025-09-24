@@ -39,10 +39,10 @@ try:
     )
 
     ee.Initialize(credentials, project=project_name)
-    print("✅ Earth Engine autenticado com sucesso usando google-auth!")
+    print("✅ Earth Engine authenticated successfully using google-auth!")
 
 except Exception as e:
-    print(f"Erro na autenticação do EE: {e}")
+    print(f"Error while authenticating EE: {e}")
 
 try:
     # CREATING GEODATAFRAME WITH GEOPANDAS
@@ -114,7 +114,7 @@ try:
     ) as dst:
         dst.write(raster, 1)
 
-    print(f"✅ Raster criado e salvo como: {output_tif}")
+    print(f"✅ Raster file created and saved as: {output_tif}")
 
     gcn_raster_path = os.path.join("assets", "GCN.tif")
 
@@ -152,17 +152,16 @@ os.makedirs(csv_folder, exist_ok=True)
 current_start = start_date
 
 while current_start < end_date:
-    # Define o fim do bloco de 30 dias
-    current_end = min(current_start + timedelta(days=30), end_date)
-    print(f"Processando dados de precipitação entre {current_start.date()} e {current_end.date()}")
 
-    # Cria FeatureCollection apenas uma vez
+    current_end = min(current_start + timedelta(days=30), end_date)
+    print(f"Processing precipitation data between {current_start.date()} e {current_end.date()}")
+
+
     fc = ee.FeatureCollection([
         ee.Feature(ee.Geometry(mapping(row.geometry)), row.drop("geometry").to_dict())
         for _, row in gdf_wgs84.iterrows()
     ])
 
-    # Cria ImageCollection filtrada para o bloco de datas
     image_collection = (
         ee.ImageCollection("UCSB-CHG/CHIRPS/DAILY")
         .filterBounds(fc)
@@ -171,7 +170,7 @@ while current_start < end_date:
         .map(lambda img: img.set("date", img.date().format("YYYY-MM-dd")))
     )
 
-    # Função para calcular média zonal
+
     def zonal_mean(img):
         stats = img.reduceRegions(
             collection=fc,
@@ -185,16 +184,16 @@ while current_start < end_date:
             "precipitation": f.get("mean")
         }))
 
-    # Aplica zonal_mean a todos os dias do bloco
+
     all_stats = image_collection.map(zonal_mean).flatten()
 
-    # Converte para pandas e salva CSV
+
     csv_path = os.path.join(csv_folder, f"precip_{current_start.date()}_{(current_end - timedelta(days=1)).date()}.csv")
     df_block = geemap.ee_to_df(all_stats)
     df_block.to_csv(csv_path, index=False)
-    print(f"CSV salvo: {csv_path}")
+    print(f"CSV: {csv_path}")
 
-    # Avança para o próximo bloco
+
     current_start = current_end
 
 csv_files = [os.path.join(csv_folder, f) for f in os.listdir(csv_folder) if f.endswith(".csv")]
@@ -202,5 +201,5 @@ all_data = pd.concat([pd.read_csv(f) for f in csv_files], ignore_index=True)
 
 final_csv_path = os.path.join(exit_path, "precipitacao_diaria_subbacias_unificado.csv")
 all_data.to_csv(final_csv_path, index=False)
-print(f"✅ CSV final unificado criado: {final_csv_path}")
+print(f"✅ Unified CSV: {final_csv_path}")
 
