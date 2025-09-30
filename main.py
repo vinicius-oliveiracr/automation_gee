@@ -75,7 +75,12 @@ try:
     ]
 
     #TRANSFORMING geoJSON INTO raster FILE
+
     gdf_m = gdf_wgs84.to_crs(gdf_wgs84.estimate_utm_crs())
+
+    output_shp = f"{exit_path}/subbasins_UTM.shp"
+    gdf_m.to_file(output_shp, driver='ESRI Shapefile', encoding='utf-8')
+    print(f"✅ Shapefile created and saved as: {output_shp}")
 
     resolution = 1000
 
@@ -109,7 +114,7 @@ try:
         width=width,
         count=1,
         dtype= raster.dtype,
-        crs=gdf_wgs84.crs,
+        crs=gdf_m.crs,
         transform=transform,
     ) as dst:
         dst.write(raster, 1)
@@ -142,8 +147,8 @@ except Exception as e:
 
 #GETTING PRECIPITATION DATA FROM GOOGLE EARTH ENGINE
 
-start_date = datetime(2024,1,1)
-end_date = datetime(2025,1,1)
+start_date = datetime(2024,1,2)
+end_date = datetime(2024,12,31)
 
     
 csv_folder = os.path.join(exit_path, "csv_blocks")
