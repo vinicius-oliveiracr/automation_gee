@@ -5,6 +5,7 @@ from jinja2 import Template
 import os
 import dotenv
 import logging
+from datetime import datetime
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -14,6 +15,7 @@ dotenv.load_dotenv()
 csv_file = os.getenv("CSV_FILE")
 dss_file = os.getenv("DSS_FILE")
 gage_file = os.getenv("GAGE_FILE")
+met_file = os.getenv("MET_FILE")
 
 #DSS PATH CONSTANTS
 
@@ -35,6 +37,32 @@ GAGE_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
     </Gage>
 {% endfor %}
 </Gages>
+"""
+
+MET_TEMPLATE = """Meteorology: {{ met_name }}
+     Description: Met model gerado automaticamente
+     Last Modified Date: {{ dt.strftime('%d %B %Y') }}
+     Last Modified Time: {{ dt.strftime('%H:%M:%S') }}
+     Version: 4.11
+     Unit System: Metric
+     Set Missing Data to Default: No
+     Precipitation Method: Specified Hyetograph
+     Air Temperature Method: None
+     Atmospheric Pressure Method: None
+     Dew Point Method: None
+     Wind Speed Method: None
+     Shortwave Radiation Method: None
+     Longwave Radiation Method: None
+     Snowmelt Method: None
+     Evapotranspiration Method: No Evapotranspiration
+     Use Basin Model: {{ basin_name }}
+End:
+
+{% for item in subbasins %}
+Subbasin: {{ item.subbasin }}
+     Gage: {{ item.gage }}
+End:
+{% endfor %}
 """
 
 def create_dss_and_gage_data (csv_path:str, dss_path:str) -> list:
@@ -98,11 +126,34 @@ def generate_gage_file (gage_path: str, gage_data: list):
     output = template.render(gages=gage_data)
 
     try:
-        with open(gage_path, 'w', encoding='utf-8') as f:
+        with open(gage_path, 'w') as f:
             f.write(output)
             logging.info(f"Gage file created successfully at {gage_path}.")
     except IOError as e:
         logging.error(f"Failed writting gage file: {e}.")
+
+def generate_met_file (output_path, met_model_name, basin_model_name, subbasin_count):
+    assignments = []
+    for i in range(1, subbasin_count + 1):
+        assignments.append({
+            "subbasin": f"Subbasin-{i}",
+            "gage": f"S_{i}"
+        })
+
+    template = Template(MET_TEMPLATE)
+    output_context = template.render(
+        met_name = met_model_name,
+        basin_name = basin_model_name,
+        subbasins = assignments,
+        dt = datetime.now()
+    )
+
+    try:
+        with open(output_path, 'w') as f:
+            f.write(output_context)
+            print(f"Met file created successfully at {output_path}")
+    except IOError as e:
+            print(f"Failed to write met file: {e}")
 
 if __name__ == "__main__":
     logging.info("Automation process initiated.")
@@ -110,5 +161,15 @@ if __name__ == "__main__":
     gage_data_list = create_dss_and_gage_data(csv_file, dss_file)
 
     generate_gage_file(gage_file, gage_data_list)
+
+    if gage_data_list:
+        met_name = "met_model"
+        subbasin_count = len(gage_data_list)
+        basin_name = "PDS"
+
+    generate_met_file(met_file, met_name, basin_name, subbasin_count)
+
+
+    logging.info(f"Generating .met file for {subbasin_count} subbasins.")
 
     logging.info("Process finalized.")
