@@ -3,3 +3,13 @@
 subbasins-pds.geojson
 assets/*.tif
 *.dss
+tarefas.txt
+test.py
+__pycache__
+.gage
+.met
+rivers
+gage.gage
+master_gages.csv
+gage_template.txt
+projeto_antigo_backup.gage
