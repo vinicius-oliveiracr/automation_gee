@@ -1,11 +1,12 @@
 import sys
+import logging
 from config import Config, DssConfig
 from auth import initialize_gee
 from geoprocessor import Geoprocessor
 from data import PrecipitationDownloader
 from dss_generator import DssGenerator
 from hms_file_generator import HmsFileGenerator
-import logging
+
 
 def gee_workflow():
     print("---Initializing hydrologic automation ---")

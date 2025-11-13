@@ -15,6 +15,19 @@ class DssGenerator:
         except FileNotFoundError:
             logging.error(f"CSV file not found at {self.config.csv_file}.")
             return []
+        
+        logging.info(f"Original data on csv file: {len(df)} lines.")
+
+        filtered_df = df[
+            (df['date'] >= self.config.start_date) & (df['date'] <= self.config.end_date)
+        ]
+
+        logging.info(f"Data after filtering ({self.config.start_date} to {self.config.end_date}): {len(filtered_df)} lines.")
+
+        if filtered_df.empty:
+            logging.warning("No data found in CSV for the time period.")
+            return []
+        
             
         self.remove_old_dss()
 
@@ -22,7 +35,7 @@ class DssGenerator:
         dss_path = self.config.dss_file
 
         with HecDss.Open(dss_path, version=7) as dss:
-            for i, (subbasin_id, sub_df) in enumerate(df.groupby("raster_val")):
+            for i, (subbasin_id, sub_df) in enumerate(filtered_df.groupby("raster_val")):
                 if sub_df.empty:
                     continue
                 sub_df = sub_df.sort_values("date")
@@ -66,7 +79,7 @@ class DssGenerator:
     def build_tsc(self, pathname, start_date, values) -> TimeSeriesContainer:
         tsc = TimeSeriesContainer()
         tsc.pathname = pathname
-        tsc.startDateTime = start_date.strftime("%d%b%Y %H:%M:%S").upper()
+        tsc.startDateTime = start_date.strftime("%d%b%Y 24:00:00").upper()
         tsc.numberValues = len(values)
         tsc.values = values
         tsc.units = self.config.UNITS

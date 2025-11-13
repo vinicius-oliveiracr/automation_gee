@@ -35,6 +35,8 @@ class DssConfig:
         self.dss_file = os.getenv("DSS_FILE")
         self.gage_file = os.getenv("GAGE_FILE")
         self.met_file = os.getenv("MET_FILE")
+        self.start_date = datetime(2018, 1, 1)
+        self.end_date = datetime(2022, 12, 31)
 
         if not all ([self.csv_file, self.dss_file, self.gage_file, self.met_file]):
             print("ERROR: Variables missing (CSV_FILE, DSS_FILE, GAGE_FILE, MET_FILE) at .env file.")

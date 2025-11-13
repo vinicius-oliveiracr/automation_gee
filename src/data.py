@@ -6,41 +6,37 @@ import sys
 from datetime import timedelta
 from shapely.geometry import mapping
 
-class PrecipitationDownloader:
-    """Baixa e processa dados de precipitação do GEE."""
-    
+class PrecipitationDownloader:    
     def __init__(self, config):
         self.config = config
         self.csv_folder = os.path.join(self.config.exit_path, "csv_blocks")
         os.makedirs(self.csv_folder, exist_ok=True)
-        print("PrecipitationDownloader inicializado.")
+        print("PrecipitationDownloader initilized.")
 
     def download_data(self, gdf_wgs84):
-        """Executa o loop de download e une os CSVs."""
         try:
-            print("\n--- Iniciando Extração de Dados do Google Earth Engine ---")
+            print("\n--- Data extraction from Google Earth Engine initialized---")
             
-            # Otimização: Criar o FeatureCollection UMA VEZ
-            print("Preparando FeatureCollection para GEE...")
+            print("Preparing FeatureCollection for GEE...")
             fc = self._create_feature_collection(gdf_wgs84)
             
             current_start = self.config.start_date
+
             while current_start < self.config.end_date:
                 current_end = min(current_start + timedelta(days=30), self.config.end_date)
-                print(f"Processando precipitação de {current_start.date()} a {current_end.date()}...")
+                print(f"Processing precipitation from {current_start.date()} to {current_end.date()}...")
                 
                 csv_filename = f"precip_{current_start.date()}_{(current_end - timedelta(days=1)).date()}.csv"
                 csv_path = os.path.join(self.csv_folder, csv_filename)
+
                 if os.path.exists(csv_path):
                     print(f"Data already collected, skipping {csv_filename}")
                     current_start = current_end
                     continue
                 image_collection = self._get_image_collection(fc, current_start, current_end)
                 
-                # A função zonal_mean é passada como um método de classe
                 all_stats = image_collection.map(lambda img: self._zonal_mean(img, fc)).flatten()
                 
-                csv_path = os.path.join(self.csv_folder, f"precip_{current_start.date()}_{(current_end - timedelta(days=1)).date()}.csv")
                 df_block = geemap.ee_to_df(all_stats)
                 df_block.to_csv(csv_path, index=False)
                 print(f"CSV salvo: {csv_path}")
@@ -51,11 +47,10 @@ class PrecipitationDownloader:
             self._merge_csvs()
 
         except Exception as e:
-            print(f"ERRO FATAL durante o download do GEE: {e}")
+            print(f"FATAL ERROR during download from GEE: {e}")
             sys.exit(1)
 
     def _create_feature_collection(self, gdf_wgs84):
-        """Converte o GeoDataFrame em um ee.FeatureCollection."""
         features = []
         for _, row in gdf_wgs84.iterrows():
             geom = ee.Geometry(mapping(row.geometry))
@@ -64,7 +59,6 @@ class PrecipitationDownloader:
         return ee.FeatureCollection(features)
 
     def _get_image_collection(self, fc, start_date, end_date):
-        """Busca a coleção de imagens CHIRPS para o período."""
         return (
             ee.ImageCollection("UCSB-CHG/CHIRPS/DAILY")
             .filterBounds(fc)
@@ -74,7 +68,6 @@ class PrecipitationDownloader:
         )
 
     def _zonal_mean(self, img, fc):
-        """Função interna para o .map() do GEE."""
         stats = img.reduceRegions(
             collection=fc,
             reducer=ee.Reducer.mean(),
@@ -88,7 +81,6 @@ class PrecipitationDownloader:
         }))
 
     def _merge_csvs(self):
-        """Une todos os CSVs baixados em um único arquivo final."""
         print("Unificando arquivos CSV...")
         csv_files = [os.path.join(self.csv_folder, f) for f in os.listdir(self.csv_folder) if f.endswith(".csv")]
         
