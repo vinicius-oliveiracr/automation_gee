@@ -42,12 +42,18 @@ class DssGenerator:
                 values = sub_df['precipitation'].values.astype(float)
                 start_date = sub_df['date'].iloc[0]
 
-                pathname = (
+                pathname_save = (
                             f"/{subbasin_id}/{self.config.B_PART}/{self.config.C_PART}/"
                             f"{start_date.strftime('%d%b%Y').upper()}/"
                             f"{self.config.E_PART}/{self.config.F_PART}/"
                         )
-                tsc = self.build_tsc(pathname, start_date, values)
+                
+                pathname_ref = (
+                            f"//{self.config.B_PART}/{self.config.C_PART}/"
+                            f"/{self.config.E_PART}/{self.config.F_PART}/"
+                        )
+                
+                tsc = self.build_tsc(pathname_save, start_date, values)
 
                 try:
                     dss.put_ts(tsc)
@@ -56,8 +62,8 @@ class DssGenerator:
                     gage_entries.append({
                         "id": f"Gage-{i}",
                         "name": f"S_{subbasin_id}",
-                        "file": os.path.basename(dss_path),
-                        "pathname": pathname
+                        "dss_file": os.path.basename(dss_path),
+                        "dss_path": pathname_ref
                         })
                 except Exception as e:
                     logging.error(f"Error while saving data for subbasin {subbasin_id}: {e}")

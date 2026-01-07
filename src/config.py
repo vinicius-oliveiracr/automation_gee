@@ -5,9 +5,10 @@ from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+load_dotenv()
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class Config:
     def __init__(self):
-        load_dotenv()
 
         self.old_gage_file = os.getenv("OLD_GAGE_FILE")
         self.dss_file = os.getenv("DSS_FILE")
@@ -18,6 +19,7 @@ class Config:
         self.account = os.getenv("EE_ACCOUNT")
         self.private_key_path = os.getenv("PRIVATE_KEY_PATH")
         self.project_name = os.getenv("PROJECT_NAME")
+        self.control_file = os.getenv("CONTROL_FILE")
 
         self.start_date = datetime(2018, 1, 1)
         self.end_date = datetime(2022, 12, 31)
@@ -29,12 +31,12 @@ class Config:
 
 class DssConfig:
     def __init__(self):
-        load_dotenv()
 
         self.csv_file = os.getenv("CSV_FILE")
         self.dss_file = os.getenv("DSS_FILE")
         self.gage_file = os.getenv("GAGE_FILE")
         self.met_file = os.getenv("MET_FILE")
+        self.control_file = os.getenv("CONTROL_FILE")
         self.start_date = datetime(2018, 1, 1)
         self.end_date = datetime(2022, 12, 31)
 
@@ -50,40 +52,53 @@ class DssConfig:
         self.UNITS = "MM"
 
         self.MET_MODEL_NAME = "met_automatico"
-        self.BASIN_MODEL_NAME = "bacia_automatica"
+        self.BASIN_MODEL_NAME = "ParaibaDoSul"
+        self.CONTROL_NAME = "control_automatico"
 
-        self.GAGE_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
-<Gages>
-{% for g in gages -%}
-    <Gage id="{{ g.id }}" name="{{ g.name }}">
-        <timeSeries file="{{ g.file }}" pathname="{{ g.pathname }}"/>
-    </Gage>
-{% endfor %}
-</Gages>
-"""
+        self.GAGE_TEMPLATE = """
+        {% for g in gages -%}
+            Gage: {{ g.name }}
+            Last Modified Date: {{ g.date }}
+            Last Modified Time: {{ g.time }}
+            Reference Height Unit: Meters
+            Reference Height: 10.0
+            Gage Type: Precipitation
+            Precipitation Gage Type: External DSS
+            External DSS File: {{ g.dss_file }}
+            External DSS Pathname: {{ g.dss_path }}
+            End:
+        {% endfor %}
+        """
 
         self.MET_TEMPLATE = """Meteorology: {{ met_name }}
-    Description: Met model gerado automaticamente
-    Last Modified Date: {{ dt.strftime('%d %B %Y') }}
-    Last Modified Time: {{ dt.strftime('%H:%M:%S') }}
-    Version: 4.11
-    Unit System: Metric
-    Set Missing Data to Default: No
-    Precipitation Method: Specified Hyetograph
-    Air Temperature Method: None
-    Atmospheric Pressure Method: None
-    Dew Point Method: None
-    Wind Speed Method: None
-    Shortwave Radiation Method: None
-    Longwave Radiation Method: None
-    Snowmelt Method: None
-    Evapotranspiration Method: No Evapotranspiration
-    Use Basin Model: {{ basin_name }}
-End:
-
+     Description: Met model gerado automaticamente
+     Last Modified Date: {{ dt.strftime('%d %B %Y') }}
+     Last Modified Time: {{ dt.strftime('%H:%M') }}
+     Version: 4.11
+     Unit System: Metric
+     Precipitation Method: Specified Hyetograph
+     Shortwave Radiation Method: None
+     Longwave Radiation Method: None
+     Snowmelt Method: None
+     Evapotranspiration Method: None
+     Use Basin Model: {{ basin_name }}
 {% for item in subbasins %}
-Subbasin: {{ item.subbasin }}
-    Gage: {{ item.gage }}
-End:
+     Subbasin: {{ item.subbasin }}
+          Precipitation Gage: {{ item.gage }}
+     End:
 {% endfor %}
+End:
 """
+
+        self.CONTROL_TEMPLATE = """Control: {{ control_name }}
+            Last Modified Date: {{ dt.strftime('%d %B %Y') }}
+            Last Modified Time: {{ dt.strftime('%H:%M') }}
+            Version: 4.11
+            Description: Automacao Python TCC
+            Start Date: {{ start_date }}
+            Start Time: 00:00
+            End Date: {{ end_date }}
+            End Time: 00:00
+            Time Interval: 1440
+        End:
+        """

@@ -43,7 +43,6 @@ class PrecipitationDownloader:
                 
                 current_start = current_end
             
-            # Após o loop, une os arquivos
             self._merge_csvs()
 
         except Exception as e:

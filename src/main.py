@@ -25,7 +25,7 @@ def gee_workflow():
 
         print("\n Script finalized successfully.")
     except Exception as e:
-        print(f"Fatal error at gee_workflow.py: {e}")
+        print(f"Fatal error at workflow: {e}")
         sys.exit(1)
 
 def dss_workflow():
@@ -45,6 +45,7 @@ def dss_workflow():
         file_generator = HmsFileGenerator(config)
         file_generator.generate_gage_file(gage_data_list)
         file_generator.generate_met_file(gage_data_list)
+        file_generator.generate_control_file()
 
         logging.info(f"Generating .met file for {len(gage_data_list)} subbasins.")
         logging.info("Process finalized successfully.")
