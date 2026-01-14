@@ -8,6 +8,11 @@ from dss_generator import DssGenerator
 from hms_file_generator import HmsFileGenerator
 
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    force=True)
+
 def gee_workflow():
     print("---Initializing hydrologic automation ---")
 
@@ -29,14 +34,13 @@ def gee_workflow():
         sys.exit(1)
 
 def dss_workflow():
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
     logging.info("DSS/HMS automation proccess initialized.")
 
     try:
         config = DssConfig()
 
         dss_generator = DssGenerator(config)
-        gage_data_list = dss_generator.create_dss_file()
+        gage_data_list = dss_generator.get_dss()
 
         if not gage_data_list:
             logging.warning("No gage data was created. Proccess will be interrupted.")
@@ -47,13 +51,15 @@ def dss_workflow():
         file_generator.generate_met_file(gage_data_list)
         file_generator.generate_control_file()
 
-        logging.info(f"Generating .met file for {len(gage_data_list)} subbasins.")
-        logging.info("Process finalized successfully.")
+        logging.info(f"Generating all files for {len(gage_data_list)} subbasins.")
+        print("Process finalized successfully.")
 
     except Exception as e:
-        logging.error(f"An error has ocurred during work flow: {e}")
+        logging.error(f"An error has ocurred during workflow: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
     gee_workflow()
     dss_workflow()
+
+    print("\n ---- Full process finalized! ----")

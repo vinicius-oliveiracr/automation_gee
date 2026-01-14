@@ -41,12 +41,10 @@ class HmsFileGenerator:
             logging.error(f"Unable to write gage file: {e}")
 
     def generate_met_file(self, gage_data: list):
-        subbasin_count = len(gage_data)
-        if subbasin_count == 0:
+        if not gage_data:
             logging.warning("No subbasin found. Met file will not be created.")
             return
         
-
         assignments = []
         
         for entry in gage_data:
@@ -69,11 +67,15 @@ class HmsFileGenerator:
             dt = datetime.now()
         )
 
-        output_context = output_context.replace('\t', '     ')
+        output_context = output_context.replace('\xa0', ' ')
+        output_context = output_context.replace('\nend', '\nEnd')
+        lines = [line.rstrip() for line in output_context.splitlines() if line.strip()]
+
+        final_content = "\r\n".join(lines) + "\r\n"
 
         try:
-            with open(self.config.met_file, 'w') as file:
-                file.write(output_context)
+            with open(self.config.met_file, 'w', encoding='ascii', newline='\r\n') as file:
+                file.write(final_content)
                 logging.info(f"Met file created successfully at {self.config.met_file}.")
         except IOError as e:
             logging.error(f"Writing met file failed: {e}")
@@ -95,5 +97,7 @@ End:
             with open(self.config.control_file, 'w') as f:
                 f.write(control_content)
             logging.info(f"Control file created successfully: {self.config.control_file}")
+        except UnicodeEncodeError:
+            logging.error("Error: Non-ASCII characters found in basin or gage name.")
         except IOError as e:
             logging.error(f"Failed to create control file: {e}.")

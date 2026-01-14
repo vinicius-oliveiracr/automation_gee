@@ -5,10 +5,42 @@ import os
 import logging
 
 class DssGenerator:
-    def __init__(self, config):
+    def __init__(self, config) -> list:
         self.config = config
         logging.info("DssGenerator initialized.")
 
+    def get_dss(self):
+        dss_exists = os.path.exists(self.config.dss_file)
+
+        if dss_exists:
+            logging.info(f"DSS file found at: {self.config.dss_file}. Skiping creation.")
+            return self._extract_metadata_only()
+        else:
+            logging.info(f"DSS file not found. Initializing complete database creation.")
+            return self.create_dss_file()
+        
+    def _extract_metadata_only(self) -> list:
+        try:
+            df = pd.read_csv(self.config.csv_file)
+            subbasins = df['raster_val'].unique()
+            logging.info(f"Subbasins found on CSV: {subbasins}")
+            gage_entries = []
+
+            for i, sub_id in enumerate(sorted(subbasins)):
+                pathname_ref = f"/{sub_id}/{self.config.B_PART}/{self.config.C_PART}//{self.config.E_PART}/{self.config.F_PART}/"
+
+                gage_entries.append({
+                    "id":f"Gage-{i}",
+                    "name": f"S_{sub_id}",
+                    "dss_file": os.path.basename(self.config.dss_file),
+                    "dss_path": pathname_ref
+                })
+
+            return gage_entries
+            
+        except Exception as e:
+            logging.error(f"Error while reading CSV metadata: {e}.")
+ 
     def create_dss_file(self) -> list:
         try:
             df = pd.read_csv(self.config.csv_file, parse_dates=['date'])
@@ -49,8 +81,8 @@ class DssGenerator:
                         )
                 
                 pathname_ref = (
-                            f"//{self.config.B_PART}/{self.config.C_PART}/"
-                            f"/{self.config.E_PART}/{self.config.F_PART}/"
+                            f"/{subbasin_id}/{self.config.B_PART}/{self.config.C_PART}/"
+                            f"/1Day/{self.config.F_PART}/"
                         )
                 
                 tsc = self.build_tsc(pathname_save, start_date, values)
