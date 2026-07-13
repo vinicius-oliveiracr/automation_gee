@@ -1,0 +1,20 @@
+name: gee-data-pipeline
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - geopandas
+  - rasterio
+  - rasterstats
+  - shapely
+  - earthengine-api
+  - geemap
+  - python-dotenv
+  - google-auth
+  - jinja2
+  - pip
+  - pip:
+      - pydsstools
